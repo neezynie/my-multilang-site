@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Multilang Site</title>
+</head>
+<body>
+    <h1>Welcome to My Multilang Site</h1>
+    <p>Choose your language:</p>
+    <ul>
+        <li><a href="ru/index.html">Русский</a></li>
+        <li><a href="en/index.html">English</a></li>
+    </ul>
+
+    <h2>Past Versions</h2>
+    <ul id="versions-list"></ul>
+
+    <script>
+        fetch('versions.json')
+        .then(res => res.json())
+        .then(data => {
+            const list = document.getElementById('versions-list');
+            data.forEach(v => {
+                const li = document.createElement('li');
+                li.innerHTML = `<a href="${v}/">${v}</a>`;
+                list.appendChild(li);
+            });
+        })
+        .catch(err => console.error(err));
+    </script>
+</body>
+</html>

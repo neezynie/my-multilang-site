@@ -1,0 +1,35 @@
+name: Deploy to GitHub Pages
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set version variable
+        run: echo "VERSION=${GITHUB_REF##*/}" >> $GITHUB_ENV
+
+      - name: Create build folder
+        run: |
+          mkdir -p build/${VERSION}
+          cp -r en ru index.html build/${VERSION}/
+          cp index.html build/
+
+      - name: Save versions.json
+        run: |
+          VERSIONS=$(ls -1 build | grep '^v' | tr '\n' ',' | sed 's/,$//')
+          echo "[\"$VERSIONS\"]" > build/versions.json
+
+      - name: Deploy to gh-pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build
+          publish_branch: gh-pages
+          keep_files: true 
+          force_orphan: true
