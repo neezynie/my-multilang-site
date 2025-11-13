@@ -2,11 +2,152 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>My Multilang Site - English</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Version Website</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background-color: #2980b9;
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+        }
+        
+        nav {
+            background-color: #3498db;
+            padding: 1rem 0;
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        nav a:hover {
+            background-color: #2980b9;
+        }
+        
+        .content {
+            background: white;
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        footer {
+            background-color: #2980b9;
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 2rem;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .feature {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #2980b9;
+        }
+        
+        .version-info {
+            background-color: #f39c12;
+            color: white;
+            padding: 0.5rem;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome!</h1>
-    <p>This is the English version of the site.</p>
-    <a href="../index.html">Back to main page</a>
+    <header>
+        <div class="container">
+            <h1>English Version Website</h1>
+            <p>Fully in English Language</p>
+        </div>
+    </header>
+    
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../ru/index.html">Русская версия</a></li>
+                <li><a href="index.html">English Version</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <div class="content">
+            <h2>Welcome to English Version!</h2>
+            <p>This is a specialized version of the website in English with content tailored for English-speaking audience.</p>
+            
+            <div class="features">
+                <div class="feature">
+                    <h3>Localization</h3>
+                    <p>Full content adaptation for English-speaking users</p>
+                </div>
+                
+                <div class="feature">
+                    <h3>Cultural Adaptation</h3>
+                    <p>Considering cultural and regional specifics</p>
+                </div>
+                
+                <div class="feature">
+                    <h3>Support</h3>
+                    <p>Technical support in English language</p>
+                </div>
+            </div>
+            
+            <h3>Our Advantages:</h3>
+            <ul>
+                <li>High-quality translation</li>
+                <li>Adapted interface</li>
+                <li>Local support</li>
+                <li>Relevant content</li>
+            </ul>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 English Version Website. All rights reserved.</p>
+        </div>
+    </footer>
 </body>
 </html>
