@@ -17,7 +17,16 @@ def generate_version_index(repo_name, version, github_repo):
                 versions.append(item)
     
     # Сортируем версии в обратном порядке (новые версии первыми)
-    versions.sort(reverse=True)
+    def version_key(v):
+        # Удаляем 'v' и разбиваем на числа
+        v_clean = v.lstrip('v')
+        parts = v_clean.split('.')
+        # Заполняем недостающие части нулями
+        while len(parts) < 3:
+            parts.append('0')
+        return [int(part) for part in parts]
+    
+    versions.sort(key=version_key, reverse=True)
     
     html_content = f'''
 <!DOCTYPE html>
@@ -78,6 +87,9 @@ def generate_version_index(repo_name, version, github_repo):
             background: #f8f9fa;
             border-radius: 5px;
             border-left: 4px solid #667eea;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }}
         
         .btn {{
@@ -89,15 +101,51 @@ def generate_version_index(repo_name, version, github_repo):
             border-radius: 5px;
             margin: 0.5rem;
             transition: background 0.3s;
+            border: none;
+            cursor: pointer;
         }}
         
         .btn:hover {{
             background: #764ba2;
         }}
         
+        .btn-small {{
+            padding: 0.4rem 0.8rem;
+            font-size: 0.9rem;
+        }}
+        
         .current-version {{
             background: #e8f5e8;
             border-left: 4px solid #4CAF50;
+        }}
+        
+        .version-links {{
+            display: flex;
+            gap: 0.5rem;
+        }}
+        
+        .language-btn {{
+            background: #27ae60;
+        }}
+        
+        .language-btn:hover {{
+            background: #219a52;
+        }}
+        
+        .home-btn {{
+            background: #e74c3c;
+        }}
+        
+        .home-btn:hover {{
+            background: #c0392b;
+        }}
+        
+        .version-info {{
+            background: #f39c12;
+            color: white;
+            padding: 0.5rem;
+            border-radius: 3px;
+            font-size: 0.9rem;
         }}
     </style>
 </head>
@@ -106,27 +154,37 @@ def generate_version_index(repo_name, version, github_repo):
         <header>
             <h1>🚀 {repo_name}</h1>
             <p>Version: <strong>{version}</strong></p>
+            <div class="version-info">
+                Commit: {os.environ.get('GITHUB_SHA', 'Unknown')[:7]}
+            </div>
         </header>
         
         <div class="version-card current-version">
             <h2>📦 Current Version: {version}</h2>
-            <p>This is version <strong>{version}</strong> of the application.</p>
+            <p>This is version <strong>{version}</strong> of the application deployed from GitHub Actions.</p>
             
             <div style="margin-top: 1rem;">
-                <a href="{version}/index.html" class="btn">🌐 Open Main Page</a>
-                <a href="{version}/ru/index.html" class="btn">🇷🇺 Russian Version</a>
-                <a href="{version}/en/index.html" class="btn">🇺🇸 English Version</a>
+                <a href="index.html" class="btn">🌐 Open Main Page</a>
+                <a href="ru/index.html" class="btn language-btn">🇷🇺 Russian Version</a>
+                <a href="en/index.html" class="btn language-btn">🇺🇸 English Version</a>
             </div>
         </div>
         
         <div class="version-list">
             <h2>📚 All Available Versions</h2>
-            <p>Select a version to view:</p>
+            <p>Select a version to view. Older versions are preserved for reference.</p>
             
             <div class="version-item current-version">
-                <strong>{version}</strong> (current)
-                <div style="margin-top: 0.5rem;">
-                    <a href="{version}/index.html" class="btn">View</a>
+                <div>
+                    <strong>{version}</strong> (current)
+                    <div style="font-size: 0.9rem; color: #666; margin-top: 0.2rem;">
+                        Deployed: {os.environ.get('GITHUB_SHA', 'Unknown')[:7]}
+                    </div>
+                </div>
+                <div class="version-links">
+                    <a href="index.html" class="btn btn-small">Main</a>
+                    <a href="ru/index.html" class="btn btn-small">RU</a>
+                    <a href="en/index.html" class="btn btn-small">EN</a>
                 </div>
             </div>
     '''
@@ -136,9 +194,13 @@ def generate_version_index(repo_name, version, github_repo):
         if ver != version:
             html_content += f'''
             <div class="version-item">
-                <strong>{ver}</strong>
-                <div style="margin-top: 0.5rem;">
-                    <a href="{ver}/index.html" class="btn">View</a>
+                <div>
+                    <strong>{ver}</strong>
+                </div>
+                <div class="version-links">
+                    <a href="../{ver}/index.html" class="btn btn-small">Main</a>
+                    <a href="../{ver}/ru/index.html" class="btn btn-small">RU</a>
+                    <a href="../{ver}/en/index.html" class="btn btn-small">EN</a>
                 </div>
             </div>
             '''
@@ -150,7 +212,9 @@ def generate_version_index(repo_name, version, github_repo):
             <h2>🔗 Quick Links</h2>
             <div>
                 <a href="/{repo_name}/latest/index.html" class="btn">📱 Latest Version</a>
+                <a href="/{repo_name}/" class="btn home-btn">🏠 Home</a>
                 <a href="https://github.com/{github_repo}" class="btn">💻 GitHub Repository</a>
+                <a href="https://github.com/{github_repo}/releases" class="btn">🎯 All Releases</a>
             </div>
         </div>
     </div>
