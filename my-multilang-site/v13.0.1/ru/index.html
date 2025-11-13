@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Русская версия сайта</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background-color: #c0392b;
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+        }
+        
+        nav {
+            background-color: #e74c3c;
+            padding: 1rem 0;
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        nav a:hover {
+            background-color: #c0392b;
+        }
+        
+        .content {
+            background: white;
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        footer {
+            background-color: #c0392b;
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 2rem;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .feature {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #c0392b;
+        }
+        
+        .version-info {
+            background-color: #27ae60;
+            color: white;
+            padding: 0.5rem;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="version-info">
+        <strong>Version:</strong> v13.0.1 | 
+        <strong>Deployment:</strong> 301e3e7
+    </div>
+    
+    <header>
+        <div class="container">
+            <h1>Русская версия сайта</h1>
+            <p>Полностью на русском языке</p>
+        </div>
+    </header>
+    
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="../index.html">Главная</a></li>
+                <li><a href="index.html">Русская версия</a></li>
+                <li><a href="../en/index.html">English Version</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <div class="content">
+            <h2>Добро пожаловать на русскую версию!</h2>
+            <p>Это специализированная версия сайта на русском языке с контентом, адаптированным для русскоязычной аудитории.</p>
+            
+            <div class="features">
+                <div class="feature">
+                    <h3>Локализация</h3>
+                    <p>Полная адаптация контента под русскоязычных пользователей</p>
+                </div>
+                
+                <div class="feature">
+                    <h3>Культурные особенности</h3>
+                    <p>Учет культурных и региональных особенностей</p>
+                </div>
+                
+                <div class="feature">
+                    <h3>Поддержка</h3>
+                    <p>Техническая поддержка на русском языке</p>
+                </div>
+            </div>
+            
+            <h3>Наши преимущества:</h3>
+            <ul>
+                <li>Высокое качество перевода</li>
+                <li>Адаптированный интерфейс</li>
+                <li>Локальная поддержка</li>
+                <li>Релевантный контент</li>
+            </ul>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Русская версия сайта. Все права защищены.</p>
+        </div>
+    </footer>
+</body>
+</html>
